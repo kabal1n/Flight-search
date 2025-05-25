@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.preloadAirports()
+
         setupAdapters()
         setupSearchInput()
         observeViewModel()
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                     viewModel.searchAirports(query)
                 } else {
                     viewModel.loadFavorites()
+                    viewModel.preloadAirports()
                     binding.autocompleteRecyclerView.visibility = View.GONE
                 }
             }

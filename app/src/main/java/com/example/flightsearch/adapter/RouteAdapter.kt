@@ -41,7 +41,9 @@ class RouteAdapter(
 
         holder.favoriteIcon.setOnClickListener {
             toggleFavorite(from.iataCode, to.iataCode)
+            notifyItemChanged(position)
         }
+
     }
 
     override fun getItemCount(): Int = routes.size

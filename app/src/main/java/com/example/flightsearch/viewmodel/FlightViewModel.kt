@@ -74,4 +74,10 @@ class FlightViewModel(application: Application) : AndroidViewModel(application) 
         }
         loadFavorites() // обновить
     }
+
+    // загружает все аэропорты один раз и сохраняет их в searchResults, чтобы MainActivity могла использовать их для сопоставления с избранными
+    fun preloadAirports() = viewModelScope.launch {
+        val allAirports = airportDao.getPopularAirports()
+        _searchResults.postValue(allAirports)
+    }
 }
